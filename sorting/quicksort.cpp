@@ -22,11 +22,19 @@ int pivotHelper(int *arr, int start, int end){
     return swap_index;
 }
 
+void quickSort(int *arr, int start, int end){
+    if(start>=end) return;
+    int p = pivotHelper(arr, start, end);
+    quickSort(arr, start, p);
+    quickSort(arr, p+1, end);
+}
 
 int main(){
     int arr[] = {4, 8, 2, 1, 5, 7, 6, 3};
     int size = sizeof(arr)/sizeof(int);
-    int t = pivotHelper(arr, 0, size);
+    quickSort(arr, 0, size);
+
+    std::cout<<"Sorted array: "<<std::endl;
     for(int i=0; i<size; i++) std::cout<<arr[i]<<" ";
     return 0;
 }
